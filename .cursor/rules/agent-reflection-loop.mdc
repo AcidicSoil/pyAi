@@ -1,0 +1,27 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Require all autonomous agents to include a post-task reflection mechanism
+globs:
+  - backend/agents/**
+  - fullycode.md
+  - .cursorrules
+alwaysApply: true
+---
+
+# Rule: Agent Reflection Loop
+
+## Description
+Each autonomous agent must include a reflection function to review its recent outputs and suggest re-attempts or delegation.
+
+## Reason
+Supports self-correction, quality improvement, and multi-agent collaboration.
+
+## Implementation Notes
+- Reflection should happen post-execution
+- Must write insights to memory or include in `task_result.reflection_notes`
+- Should evaluate whether task success criteria was met
+

@@ -1,0 +1,35 @@
+# Python
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.coverage
+**/*.so
+
+# Node.js
+node_modules
+dist
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.turbo
+**/.eslintcache
+
+# Environment
+.env
+.env.example
+.ipynb_checkpoints
+
+# IDE
+.idea
+**/.DS_Store
+
+
+# Build artifacts
+**/build/
+**/out/
+**/coverage/

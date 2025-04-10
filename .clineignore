@@ -1,0 +1,32 @@
+# IDE and Editor Files
+**/.DS_Store
+**/.DS_Store
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+*.swo
+.DS_Store
+
+# Build and Dependencies
+node_modules/
+dist/
+build/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+venv/
+__pycache__/
+*.pyc
+
+# Config and Environment
+.env
+.env.local
+.env.*.local
+.continue/config.yaml
+.continue/config.ts
+
+# Project Specific
+tools/__pycache__/
+tools/*.pyc

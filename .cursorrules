@@ -1,0 +1,128 @@
+# .cursorrules – Custom Rule File for Modular AI Agent System
+
+<!-- @format -->
+
+## 🧠 Current Project: Modular AI Agent System
+**Goal**: Design a Pythonic, GPU-accelerated, local-first AI research agent framework
+
+---
+
+## 🔧 Development Workflow (Strict Sequence)
+1. `masterplan.md`: Define system goals, stack, data model, deployment, agent capabilities
+2. `stubout.md`: Create live frontend, backend dummy endpoints, stubbed files for core modules
+3. `fullycode.md`: Production code for agents, orchestration, memory, integrations, and infra
+
+**Important**: Frontend UI (Vite + React + Tailwind + shadcn/ui) must be running from stubout onwards.
+Monitor for integration errors between frontend and FastAPI backend.
+
+---
+
+## ⚙️ Tools and Tech Stack
+
+### Frontend
+- Vite + React + TypeScript
+- TailwindCSS + shadcn/ui
+- Zustand (local state)
+- React Query / SWR (data fetching)
+
+### Backend
+- Python 3.11+
+- FastAPI (async endpoints)
+- Pydantic v2
+- Prefect (multi-agent orchestration)
+- `llama.cpp` + Vulkan
+- ChromaDB (primary)
+- Optional: Weaviate, Pinecone
+
+### Deployment
+- Docker (local)
+- Terraform (cloud/G5 GPU EC2)
+- Shared Dockerfile for local/cloud
+
+---
+
+## 📁 Project Structure
+```bash
+/ai-agent-framework
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   └── lib/
+├── backend/
+│   ├── agents/
+│   ├── api/
+│   ├── llm/
+│   ├── memory/
+│   ├── orchestration/
+│   ├── integrations/
+│   └── main.py
+├── infra/
+│   ├── Dockerfile
+│   └── terraform/
+```
+
+---
+
+## 🧩 Stub File Guidelines (Phase 2)
+Each Python stub must include:
+- Purpose comment
+- Filepath comment
+- Placeholder imports
+- Empty class/function declarations
+- `# TODO:` markers
+
+Each frontend stub:
+- React component shell (with component label)
+- Route-page structure scaffolded
+- Component folder organized by feature
+
+---
+
+## 📐 Best Practices
+- Treat agents as modular tools
+- Build generic interfaces for LLM, memory, tools
+- Keep LLM inference abstracted from agent class
+- Use Pydantic for all structured I/O
+- Use shared memory namespace architecture with timestamp-based sync
+
+---
+
+## 📜 Project Rules
+1. **Frontend must run first** and persist across all phases
+2. Use **dummy API responses** until backend logic is ready
+3. Keep backend modular and testable
+4. Prioritize GPU-ready models and reasoning agents
+5. Stick to three-phase process, no phase merging
+6. Integrations (Slack, Notion, etc.) are abstracted modules
+7. Store sync metadata in Chroma and periodically back up to S3
+8. Agents may reason recursively and query others
+9. Add timestamps + agent priority to resolve memory conflicts
+
+---
+
+## 📒 Scratchpad
+### Current Conversation State
+- Phase 1: ✅ `masterplan.md` complete
+- Phase 2: ⏳ Starting `stubout.md`
+- Priority: Ensure `frontend/` runs on `localhost` before continuing
+
+---
+
+## 📚 Lessons
+- Always scaffold the frontend and verify it's bootstrapped before backend logic
+- Use minimal dummy responses to test backend APIs
+- Prefer smaller quantized models (`gemma-3-4b-it`) to fit 12GB GPU budget
+- Setup Chroma with local collections first; add Pinecone/Weaviate layer later
+- Cloud fallback must use a single Dockerfile with Vulcan-ready base image
+
+---
+
+## ✅ TODO
+[X] Create masterplan.md
+[X] Create stubout.md with frontend priority
+[X] Create fullycode.md structure
+[ ] Generate working frontend stub (Vite + React + Tailwind)
+[ ] Wire dummy backend endpoints
+[ ] Implement stubs for core modules: agent, memory, llm, orchestration, integrations
+

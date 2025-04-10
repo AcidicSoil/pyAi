@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Maintain consistent file-level stubs for all backend modules
+globs:
+  - backend/**
+  - stubout.md
+  - .cursorrules
+alwaysApply: true
+---
+
+# Rule: Module Stub Consistency
+
+## Description
+All backend modules (e.g., `llm/`, `memory/`, `orchestration/`) must follow consistent stubbing patterns for rapid onboarding and tool-based agent development.
+
+## Requirements
+- Top-of-file purpose comment
+- `# filepath:` comment
+- Placeholder imports
+- Class/function declarations matching `masterplan.md`
+- `# TODO:` markers
+
+## Scope
+Applies to: `agents`, `llm`, `memory`, `integrations`, `orchestration`
+

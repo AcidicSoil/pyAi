@@ -1,0 +1,28 @@
+# Continue
+
+> Continue is an open-source autopilot for software development that helps you understand and work with unfamiliar code using AI-powered code editing features.
+
+Continue is designed to streamline development workflows by automating routine coding tasks, offering code explanations, generating code implementations, and providing intelligent autocompletions. It integrates with popular code editors and development environments.
+
+## Documentation
+
+- [Getting Started](https://continue.dev/docs/getting-started): Installation instructions and basic usage guide
+- [Core Features](https://continue.dev/docs/features): Overview of Continue's main functionality
+- [Supported Models](https://continue.dev/docs/models): Information about AI models supported by Continue
+- [Configuration](https://continue.dev/docs/configuration): How to configure Continue for your development environment
+
+## Integrations
+
+- [VS Code Extension](https://continue.dev/docs/vs-code): Integration with Visual Studio Code
+- [JetBrains Extension](https://continue.dev/docs/jetbrains): Integration with JetBrains IDEs
+- [Terminal Interface](https://continue.dev/docs/terminal): Using Continue in a terminal environment
+
+## API
+
+- [API Reference](https://continue.dev/docs/api-reference): Complete API documentation for Continue
+
+## Optional
+
+- [Troubleshooting](https://continue.dev/docs/troubleshooting): Common issues and their solutions
+- [Contributing Guide](https://continue.dev/docs/contributing): How to contribute to Continue
+- [Roadmap](https://continue.dev/docs/roadmap): Future development plans and features

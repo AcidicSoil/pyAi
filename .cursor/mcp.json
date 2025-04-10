@@ -1,0 +1,64 @@
+{
+	"mcpServers": {
+		"langgraph-docs-mcp": {
+			"command": "uvx",
+			"args": [
+				"--from",
+				"mcpdoc",
+				"mcpdoc",
+				"--urls",
+				"AugmentCode:https://docs.augmentcode.com/llms.txt",
+				"--urls",
+				"Cline:https://docs.cline.bot/llms.txt",
+				"--urls",
+				"Continue:C:/Users/comfy/Projects/_pipeResearch-new/local_docs/continue-llms.txt",
+				"--urls",
+				"LangChain:https://python.langchain.com/llms.txt",
+				"--urls",
+				"LangGraph:https://langchain-ai.github.io/langgraph/llms.txt",
+				"--urls",
+				"Sourcegraph:https://sourcegraph.com/docs/llms.txt",
+				"--allowed-domains",
+				"augmentcode.com",
+				"cline.bot",
+				"continue-llms.txt",
+				"langchain-ai.github.io",
+				"langchain.com",
+				"sourcegraph.com",
+				"--transport",
+				"stdio"
+			]
+		}
+	},
+	"mcpSseServers": {
+		"langgraph-docs-mcp": {
+			"command": "uvx",
+			"args": [
+				"--from",
+				"mcpdoc",
+				"mcpdoc",
+				"--urls",
+				"AugmentCode:https://docs.augmentcode.com/llms.txt",
+				"--urls",
+				"Cline:https://docs.cline.bot/llms.txt",
+				"--urls",
+				"Continue:C:/Users/comfy/Projects/_pipeResearch-new/local_docs/continue-llms.txt",
+				"--urls",
+				"LangChain:https://python.langchain.com/llms.txt",
+				"--urls",
+				"LangGraph:https://langchain-ai.github.io/langgraph/llms.txt",
+				"--urls",
+				"Sourcegraph:https://sourcegraph.com/docs/llms.txt",
+				"--allowed-domains",
+				"augmentcode.com",
+				"cline.bot",
+				"continue-llms.txt",
+				"langchain-ai.github.io",
+				"langchain.com",
+				"sourcegraph.com",
+				"--transport",
+				"sse"
+			]
+		}
+	}
+}

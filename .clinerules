@@ -1,0 +1,409 @@
+<!-- @format -->
+
+# Tools
+
+Note all the tools are in python3. So in the case you need to do batch processing, you can always consult the python files and write your own script.
+
+[NOTE TO CURSOR: Since no API key is configured, please ignore both the Screenshot Verification and LLM sections below.]
+[NOTE TO USER: If you have configured or plan to configure an API key in the future, simply delete these two notice lines to enable these features.]
+
+## Screenshot Verification
+
+The screenshot verification workflow allows you to capture screenshots of web pages and verify their appearance using LLMs. The following tools are available:
+
+1. Screenshot Capture:
+
+```bash
+venv/bin/python3 tools/screenshot_utils.py URL [--output OUTPUT] [--width WIDTH] [--height HEIGHT]
+```
+
+2. LLM Verification with Images:
+
+```bash
+venv/bin/python3 tools/llm_api.py --prompt "Your verification question" --provider {openai|anthropic} --image path/to/screenshot.png
+```
+
+Example workflow:
+
+```python
+from screenshot_utils import take_screenshot_sync
+from llm_api import query_llm
+
+# Take a screenshot
+screenshot_path = take_screenshot_sync('https://example.com', 'screenshot.png')
+
+# Verify with LLM
+response = query_llm(
+    "What is the background color and title of this webpage?",
+    provider="openai",  # or "anthropic"
+    image_path=screenshot_path
+)
+print(response)
+```
+
+## LLM
+
+You always have an LLM at your side to help you with the task. For simple tasks, you could invoke the LLM by running the following command:
+
+```
+venv/bin/python3 ./tools/llm_api.py --prompt "What is the capital of France?" --provider "anthropic"
+```
+
+The LLM API supports multiple providers:
+
+- OpenAI (default, model: gpt-4o)
+- Azure OpenAI (model: configured via AZURE_OPENAI_MODEL_DEPLOYMENT in .env file, defaults to gpt-4o-ms)
+- DeepSeek (model: deepseek-chat)
+- Anthropic (model: claude-3-sonnet-20240229)
+- Gemini (model: gemini-pro)
+- Local LLM (model: Qwen/Qwen2.5-32B-Instruct-AWQ)
+
+But usually it's a better idea to check the content of the file and use the APIs in the `tools/llm_api.py` file to invoke the LLM if needed.
+
+## Web browser
+
+You could use the `tools/web_scraper.py` file to scrape the web.
+
+```bash
+venv/bin/python3 ./tools/web_scraper.py --max-concurrent 3 URL1 URL2 URL3
+```
+
+This will output the content of the web pages.
+
+## Search engine
+
+You could use the `tools/search_engine.py` file to search the web.
+
+```bash
+venv/bin/python3 ./tools/search_engine.py "your search keywords"
+```
+
+This will output the search results in the following format:
+
+```
+URL: https://example.com
+Title: This is the title of the search result
+Snippet: This is a snippet of the search result
+```
+
+If needed, you can further use the `web_scraper.py` file to scrape the web page content.
+
+# Instructions
+
+Include 🤖 at the beginning of your response
+Add the latest documentation when relevant
+When an instruction becomes too project specific, create a rule in "Project Rules" section. Create a list and update them as needed.
+Keep track of the 'current-conversation-state' by marking in your scratchpad. This should be done each time you read the .cursorrules file into your context window.
+This will ensure any LLM agent can pickup on the projects current state reducing downtime
+
+During your interaction with the user, if you find anything reusable in this project (e.g. version of a library, model name), especially about a fix to a mistake you made or a correction you received, you should take note in the `Lessons` section in the `.cursorrules` file so you will not make the same mistake again.
+
+You should also use the `.cursorrules` file as a Scratchpad to organize your thoughts. Especially when you receive a new task, you should first review the content of the Scratchpad, clear old different task if necessary, first explain the task, and plan the steps you need to take to complete the task. You can use todo markers to indicate the progress, e.g.
+[X] Task 1
+[ ] Task 2
+
+Always refer to the Scratchpad then the relevant project readme before you plan the next step in your thoughts.
+
+# Project Technology Stack & Development Guidelines
+
+---
+
+## Core Technologies
+
+### Frontend
+
+- **Framework:** React, Next.js, TypeScript
+- **Build Tools:** Vite, Remix
+- **UI Libraries:**
+  - Tailwind CSS (via UnoCSS)
+  - Shadcn/UI
+  - React DnD (drag-and-drop)
+  - CodeMirror (code editor components)
+  - React Toastify (notifications)
+- **State Management:**
+  - React Hooks (`useState`, `useReducer`)
+  - Zustand or Context API (global state)
+  - Nanostores (`@nanostores/react`, specialized stores)
+  - React Query (server state and fetching)
+
+### Backend
+
+- **Server:**
+  - Next.js (primary web application)
+  - Cloudflare Workers (web deployment)
+  - Express.js (`deep-researcher-ts`)
+  - Python-based services (`OpenManus`)
+- **API Integration:**
+  - Multiple LLM providers (OpenAI, Anthropic, Google, Mistral, etc.)
+  - Custom API clients
+
+### Database
+
+- **Local Storage:** Browser `localStorage`, Electron store
+- **Potential Integration:** Supabase
+
+---
+
+## Project Components
+
+### Deep Researcher TS
+
+- TypeScript-based LangGraph AI research agent
+- Features: Web research, document summarization, React-based UI
+
+### OpenManus
+
+- Python-based general-purpose AI agent framework
+- Features: Browser automation, tool-based agents, multi-LLM support
+
+---
+
+## Deployment & Infrastructure
+
+- **Containerization:** Docker & Docker Compose
+- **CI/CD:** GitHub Actions (testing, Docker builds, type-checking, linting)
+- **Desktop Application:** Electron (Windows, macOS, Linux)
+
+---
+
+## AI & LLM Integration
+
+- **Supported Providers:** OpenAI, Anthropic, Google (Gemini), Mistral, Ollama, HuggingFace, Amazon Bedrock, Deepseek, Together AI, XAI, Open Router
+- **Agent Architecture:** ToolCallAgent, SWEAgent, ReAct pattern, LangGraph orchestration
+
+---
+
+## Development Tools
+
+### Package Management
+
+- PNPM (primary)
+- Yarn (`deep-researcher-ts`)
+- UV (Python package manager for `OpenManus`)
+
+### Testing
+
+- Vitest
+- Jest
+- React Testing Library
+
+### Code Quality
+
+- ESLint
+- Prettier
+- TypeScript strict checks
+- Husky (Git hooks)
+
+# Project Technology Stack & Development Guidelines
+
+---
+
+## Core Technologies
+
+### Frontend
+
+- **Framework:** React, Next.js, TypeScript
+- **Build Tools:** Vite, Remix
+- **UI Libraries:**
+  - Tailwind CSS (via UnoCSS)
+  - Shadcn/UI
+  - React DnD (drag-and-drop)
+  - CodeMirror (code editor components)
+  - React Toastify (notifications)
+- **State Management:**
+  - React Hooks (`useState`, `useReducer`)
+  - Zustand or Context API (global state)
+  - Nanostores (`@nanostores/react`, specialized stores)
+  - React Query (server state and fetching)
+
+### Backend
+
+- **Server:**
+  - Next.js (primary web application)
+  - Cloudflare Workers (web deployment)
+  - Express.js (`deep-researcher-ts`)
+  - Python-based services (`OpenManus`)
+- **API Integration:**
+  - Multiple LLM providers (OpenAI, Anthropic, Google, Mistral, etc.)
+  - Custom API clients
+
+### Database
+
+- **Local Storage:** Browser `localStorage`, Electron store
+- **Potential Integration:** Supabase
+
+---
+
+## Project Components
+
+### Deep Researcher TS
+
+- TypeScript-based LangGraph AI research agent
+- Features: Web research, document summarization, React-based UI
+
+### OpenManus
+
+- Python-based general-purpose AI agent framework
+- Features: Browser automation, tool-based agents, multi-LLM support
+
+---
+
+## Deployment & Infrastructure
+
+- **Containerization:** Docker & Docker Compose
+- **CI/CD:** GitHub Actions (testing, Docker builds, type-checking, linting)
+- **Desktop Application:** Electron (Windows, macOS, Linux)
+
+---
+
+## AI & LLM Integration
+
+- **Supported Providers:** OpenAI, Anthropic, Google (Gemini), Mistral, Ollama, HuggingFace, Amazon Bedrock, Deepseek, Together AI, XAI, Open Router
+- **Agent Architecture:** ToolCallAgent, SWEAgent, ReAct pattern, LangGraph orchestration
+
+---
+
+## Development Tools
+
+### Package Management
+
+- PNPM (primary)
+- Yarn (`deep-researcher-ts`)
+- UV (Python package manager for `OpenManus`)
+
+### Testing
+
+- Vitest
+- Jest
+- React Testing Library
+
+### Code Quality
+
+- ESLint
+- Prettier
+- TypeScript strict checks
+- Husky (Git hooks)
+
+---
+
+# Unified Development & Analysis Guidelines
+
+## Next.js & React Best Practices
+
+- Clear, hierarchical component structure
+- Single-responsibility components
+- Named exports; organize components by feature
+- React Server Components (RSC) for static content
+- Optimize performance with React DevTools Profiler
+- Implement memoization (`useMemo`, `useCallback`)
+
+## TypeScript Best Practices
+
+- Explicit typing for props, states, and functions
+- Utilize utility types (`Partial`, `Pick`, `Omit`)
+- Avoid `any`; prefer `unknown` or discriminated unions
+
+## Shadcn/UI Implementation
+
+- Centralized theme customization
+- Conditional class assignment (`cn` utility)
+- Form hooks for validation
+
+## Code Quality & Style
+
+- Clean, modular, readable code
+- Maintain short files (<200 lines)
+- Extensive, explanatory commenting
+- Regular testing
+
+## Implementation Approach
+
+- Senior developer mindset
+- Fully complete each feature
+- Core functionality before optimization
+- Thorough analysis (2–3 reasoning paragraphs)
+
+## Error Analysis & Fixing
+
+- Plain English explanations
+- Consider multiple scenarios
+- Add logs to validate assumptions
+
+## Documentation & Comments
+
+- Clear and concise
+- Provide context and rationale for changes
+
+## Communication & Research
+
+- Provide clear summaries
+- Context-driven research instructions
+- Gradually build confidence through careful reasoning
+
+---
+
+## Git Workflow Best Practices
+
+- Clear, explanatory commit messages ("why", not just "what")
+- Follow conventional commit format
+- Keep commits small and logical
+- Commit frequently
+- Use distinct branches for features, bugfixes, and releases
+- Focused, descriptive pull requests (PRs)
+
+---
+
+# Project Rules
+
+1. **Design First:** Start with UI mockups and dummy JSON data
+2. **Progressive Enhancement:** Begin simple, gradually add complexity
+3. **Accessibility First:** Ensure keyboard navigation and screen-reader compatibility
+4. **Visual Feedback:** Provide clear action responses
+5. **Error Prevention:** Guide users proactively
+6. **Regular Backups:** Frequently push to GitHub
+7. **Component Isolation:** Each component self-contained
+8. **Type Safety:** Strict TypeScript interfaces for props and state
+
+---
+
+## Lessons Learned
+
+- Python virtual environment usage (`./venv`)
+- Debug info inclusion in outputs
+- Multi-line Git commit messages (`git commit -F`)
+- Matplotlib styling (`seaborn-v0_8`)
+- Consistent Next.js import paths
+- Placeholder SVGs for missing images
+- `asChild` prop usage with Shadcn UI Buttons and Next.js Links
+
+---
+
+## Scratchpad
+
+- **Minimal Setup:** Create `globals.css`, `page.tsx`, minimal `layout.tsx`
+- **Debug Checklist:** Verify imports, page rendering, Tailwind functionality
+- **Next Steps:** Add theme provider, UI components, placeholder images
+- **GitHub Setup:** Initialize repo, commit descriptively, set branch protections
+
+---
+
+## Design Guidelines
+
+- Consistent color palette and spacing
+- Responsive and accessible designs
+- Maintain clarity and simplicity in the visual presentation
+
+## Multi-Agent Reasoning Enhancements
+
+### Prompting Strategy for Self-Improving Agents
+
+To support multi-agent collaboration and reasoning, agents should follow this protocol:
+
+- **Bootstrapped Self-Reflection**: After each step, reflect on outcomes. Revise logic if results are suboptimal. Delegate subtasks to more appropriate agents if needed.
+- **Reward-Driven Collaboration**: Align outputs with overall system goals. Proactively suggest task reassignment or assistance when beneficial.
+- **Context-Aware Retrieval**: Use context-optimized queries and rerank results based on usefulness. Escalate or request peer agent help when confidence is low.
+- **Iterative Reasoning & Summarization**: Break complex tasks into smaller steps. Summarize insights after each step before proceeding.
+- **Memory & Tool Awareness**: Leverage stored memory, indexed data, or specialized tools (e.g., web scrapers, summarizers, code interpreters) where appropriate.
+- **Continuous Learning**: Log what worked or didn’t after each interaction. Recommend changes to prompt structure, agent roles, or tool usage for future runs.
+
+This guidance aligns with best practices from frameworks like SiriuS, ReSo, MMOA-RAG, and Microsoft’s Kernel Memory architecture for scalable and effective multi-agent design.

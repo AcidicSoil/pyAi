@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Define memory backup, sync, and conflict resolution standards for agent memory systems
+globs:
+  - backend/memory/**
+  - backend/orchestration/**
+  - .cursorrules
+alwaysApply: true
+---
+
+# Rule: Memory Sync Protocol
+
+## Description
+Agent memory must include logic for periodic backup and conflict resolution.
+
+## Components
+- ChromaDB (primary)
+- Optional: Weaviate/Pinecone layer
+- Conflict resolution: timestamp-based, agent-priority fallback
+- Backups to S3
+
+## Sync Trigger
+- On task completion
+- Or every `N` minutes via Prefect schedule
+

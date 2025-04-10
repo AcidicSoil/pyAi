@@ -1,0 +1,27 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Ensure frontend UI is live and compiled before backend or logic development begins
+globs:
+  - frontend/**
+  - stubout.md
+  - .cursorrules
+alwaysApply: true
+---
+
+# Rule: Frontend Must Run First
+
+## Description
+The frontend (Vite + React + Tailwind + shadcn/ui) must always be initialized and served before backend or logic layers are developed.
+
+## Reason
+Ensures UI feedback loop is always active during development, preventing blind backend implementation and reducing debugging time.
+
+## Enforcement
+- All routes must be accessible via live dev server (`localhost:5173`)
+- UI must stub out all known pages from `masterplan.md` and `stubout.md`
+- Do not begin `fullycode.md` implementation if frontend fails to build
+

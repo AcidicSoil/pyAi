@@ -1,0 +1,84 @@
+{
+	"CodeGPT.apiKey": "Ollama",
+
+	// Editor general settings
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.organizeImports": "explicit"
+	},
+	"files.insertFinalNewline": true,
+	"files.trimTrailingWhitespace": true,
+
+	// TypeScript/JavaScript
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+
+	// Python
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter",
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": "explicit"
+		}
+	},
+	"python.formatting.provider": "none",
+	"python.linting.enabled": true,
+	"python.linting.pylintEnabled": true,
+
+	// TOML
+	"[toml]": {
+		"editor.defaultFormatter": "tamasfe.even-better-toml"
+	},
+	"evenBetterToml.schema.enabled": true,
+	"evenBetterToml.schema.associations": {
+		"^.+config[/\\\\].+\\.toml$": "../config/schema.config.json"
+	},
+
+	// YAML
+	"[yaml]": {
+		"editor.defaultFormatter": "redhat.vscode-yaml"
+	},
+
+	// Markdown
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.formatOnSave": true,
+		"editor.wordWrap": "on",
+		"files.trimTrailingWhitespace": false
+	},
+
+	// CSS/SCSS
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+
+	// HTML
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+
+	// Pre-commit configuration
+	"pre-commit-helper.runOnSave": "none",
+	"pre-commit-helper.config": ".pre-commit-config.yaml"
+}

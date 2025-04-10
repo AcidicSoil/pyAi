@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Enforce GPU readiness with Vulkan-compatible Docker container across local and cloud environments
+globs:
+  - infra/Dockerfile
+  - backend/llm/**
+  - .cursorrules
+alwaysApply: true
+---
+
+# Rule: Docker Vulkan Standard
+
+## Description
+The Docker container must be Vulkan-ready to support GPU-based inference using llama.cpp with local models.
+
+## Requirements
+- Base image: `nvidia/cuda` or Vulkan-supporting distro
+- Verify `/dev/dri` is mapped
+- Include llama.cpp Vulkan flags
+- Use shared Dockerfile for both local + AWS deployments
+
+## Deployment Check
+- Local: Docker run w/ volume mount
+- Cloud: Terraform + EC2 G5 integration
+
