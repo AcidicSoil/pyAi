@@ -1,8 +1,82 @@
 <!-- @format -->
 
-# Modular AI Agent Framework
+# Modular AI Agent System
 
-A Python-first, GPU-accelerated AI agent system designed for autonomous research, reflection, memory, and multi-agent orchestration. Built for local-first development with optional cloud scalability.
+A Pythonic, GPU-accelerated, local-first AI research agent framework.
+
+## Project Overview
+
+This system provides a modular framework for AI agents that can perform various tasks, including research, code generation, and data analysis. It is designed to be:
+
+- **Local-first**: Run models locally with GPU acceleration
+- **Modular**: Easily add new agents and capabilities
+- **Extensible**: Integrate with external services and APIs
+- **Collaborative**: Agents can work together to solve complex problems
+
+## Architecture
+
+The system consists of two main components:
+
+1. **Frontend**: Vite + React + TypeScript + TailwindCSS
+2. **Backend**: FastAPI + Pydantic + Prefect + LLM integrations
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 16+ and npm/yarn for frontend
+- Python 3.11+ for backend
+- Vulkan-compatible GPU for LLM acceleration
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/ai-agent-framework.git
+cd ai-agent-framework
+
+# Install frontend dependencies
+cd frontend
+npm install
+cd ..
+
+# Install backend dependencies
+cd backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+cd ..
+```
+
+### Running in Development Mode
+
+```bash
+# Run both frontend and backend
+./run-dev.sh
+```
+
+This will start:
+- Frontend at http://localhost:5173/
+- Backend at http://localhost:8000/
+
+## Project Structure
+
+```
+/ai-agent-framework
+├── frontend/           # Vite + React frontend
+├── backend/            # FastAPI backend
+│   ├── agents/         # Agent implementations
+│   ├── api/            # API endpoints
+│   ├── llm/            # LLM interfaces
+│   ├── memory/         # Memory systems
+│   ├── orchestration/  # Prefect workflows
+│   └── integrations/   # External service integrations
+└── infra/              # Deployment and infrastructure
+```
+
+## Current Status
+
+The project is currently in the **stubout** phase, with basic frontend and backend stubs implemented. The next step is to implement the full functionality in the **fullycode** phase.
 
 ---
 

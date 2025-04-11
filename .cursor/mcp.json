@@ -18,6 +18,12 @@
 				"LangGraph:https://langchain-ai.github.io/langgraph/llms.txt",
 				"--urls",
 				"Sourcegraph:https://sourcegraph.com/docs/llms.txt",
+				"--urls",
+				"PydanticAI:https://ai.pydantic.dev/llms.txt",
+				"--urls",
+				"Unsloth:https://docs.unsloth.ai/llms.txt",
+				"--urls",
+				"LLMSTXT:https://llmstxt.org/llms.txt",
 				"--allowed-domains",
 				"augmentcode.com",
 				"cline.bot",
@@ -25,6 +31,9 @@
 				"langchain-ai.github.io",
 				"langchain.com",
 				"sourcegraph.com",
+				"ai.pydantic.dev",
+				"unsloth.ai",
+				"llmstxt.org",
 				"--transport",
 				"stdio"
 			]
@@ -49,6 +58,12 @@
 				"LangGraph:https://langchain-ai.github.io/langgraph/llms.txt",
 				"--urls",
 				"Sourcegraph:https://sourcegraph.com/docs/llms.txt",
+				"--urls",
+				"PydanticAI:https://ai.pydantic.dev/llms.txt",
+				"--urls",
+				"Unsloth:https://docs.unsloth.ai/llms.txt",
+				"--urls",
+				"LLMSTXT:https://llmstxt.org/llms.txt",
 				"--allowed-domains",
 				"augmentcode.com",
 				"cline.bot",
@@ -56,9 +71,13 @@
 				"langchain-ai.github.io",
 				"langchain.com",
 				"sourcegraph.com",
+				"ai.pydantic.dev",
+				"unsloth.ai",
+				"llmstxt.org",
 				"--transport",
 				"sse"
 			]
 		}
 	}
 }
+

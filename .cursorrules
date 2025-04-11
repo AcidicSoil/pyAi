@@ -33,6 +33,7 @@ Monitor for integration errors between frontend and FastAPI backend.
 - `llama.cpp` + Vulkan
 - ChromaDB (primary)
 - Optional: Weaviate, Pinecone
+- uv (Python package manager)
 
 ### Deployment
 - Docker (local)
@@ -98,14 +99,33 @@ Each frontend stub:
 7. Store sync metadata in Chroma and periodically back up to S3
 8. Agents may reason recursively and query others
 9. Add timestamps + agent priority to resolve memory conflicts
+10. Include **full absolute paths** in all file references, whether in operations, discussions, or questions about files
+11. Use **uv** as Python package manager for faster dependency installation
+12. **Check editor windows** for running servers before executing commands
+13. **Monitor server logs** continuously for issues and correct them immediately when they occur
 
 ---
 
 ## 📒 Scratchpad
 ### Current Conversation State
 - Phase 1: ✅ `masterplan.md` complete
-- Phase 2: ⏳ Starting `stubout.md`
-- Priority: Ensure `frontend/` runs on `localhost` before continuing
+- Phase 2: ✅ `stubout.md` basic implementation complete
+  - Frontend and backend stubs implemented and working
+  - API integration successful
+- Phase 3: ⏳ Preparing for `fullycode.md`
+- Next focus: Core module stubs implementation
+
+### Server Status
+- Backend: Running on http://localhost:8000
+  - Health endpoint: /health
+  - API prefix: /api
+  - Start with: `cd backend && source .venv/Scripts/activate && python -m uvicorn main:app --reload --port 8000`
+  - Status: ✅ Running and receiving API requests
+- Frontend: Running on http://localhost:5173 
+  - Start with: `cd frontend && npm run dev`
+  - Status: ✅ Running successfully, displaying agent list from API
+- For both servers: Use improved `./run-dev.sh` script
+- Watch console output for warnings/errors and address immediately
 
 ---
 
@@ -115,6 +135,13 @@ Each frontend stub:
 - Prefer smaller quantized models (`gemma-3-4b-it`) to fit 12GB GPU budget
 - Setup Chroma with local collections first; add Pinecone/Weaviate layer later
 - Cloud fallback must use a single Dockerfile with Vulcan-ready base image
+- Use uv for Python package management (faster than pip)
+- Create virtual environments with `uv venv` before installing packages
+- Add proper activation commands in scripts (`source .venv/Scripts/activate` on Windows)
+- Check if servers are already running before starting new ones
+- Troubleshoot npm dependency issues by clearing node_modules and package-lock.json
+- Docker builds for LLM compilation need optimized parameters and stable release tags
+- Use `-j$(nproc)` for parallel compilation in Docker builds to speed up the process
 
 ---
 
@@ -122,7 +149,13 @@ Each frontend stub:
 [X] Create masterplan.md
 [X] Create stubout.md with frontend priority
 [X] Create fullycode.md structure
-[ ] Generate working frontend stub (Vite + React + Tailwind)
-[ ] Wire dummy backend endpoints
+[X] Set up backend environment with uv
+[X] Get backend server running correctly
+[X] Fix frontend Rollup dependency issues
+[X] Get frontend server running correctly
+[X] Generate working frontend stub (Vite + React + Tailwind)
+[X] Wire dummy backend endpoints
 [ ] Implement stubs for core modules: agent, memory, llm, orchestration, integrations
-
+[ ] Add robust error handling to frontend API calls
+[ ] Implement proper API response validation
+[ ] Complete the testing infrastructure
